@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="OrderAssemblyReferences" AssemblyFile="DependencyOrdering.dll"/>
+  <Target Name="BuildScriptRefs" DependsOnTargets="ResolveReferences">
+    <OrderAssemblyReferences ReferencePaths="@(ReferencePath)">
+      <Output TaskParameter="Ordering" ItemName="Ordering"/>
+    </OrderAssemblyReferences>
+    <WriteLinesToFile File="References.fsx" Lines="@(Ordering)" Overwrite="true"/>
+  </Target>
+</Project>
+  
